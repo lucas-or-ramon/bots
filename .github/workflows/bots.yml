@@ -44,13 +44,13 @@ jobs:
           name: jar
       - name: Fly Deploy
         uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl secrets set TWILIO_NUMBER=${{ secrets.TWILIO_NUMBER }}
-      - run: flyctl secrets set TWILIO_AUTH_TOKEN=${{ secrets.TWILIO_AUTH_TOKEN }}
-      - run: flyctl secrets set TWILIO_ACCOUNT_SID=${{ secrets.TWILIO_ACCOUNT_SID }}
-      - run: flyctl secrets set CALENDAR_APP_NAME=${{ secrets.CALENDAR_APP_NAME }}
-      - run: flyctl secrets set CALENDAR_TOKENS_DIR_PATH=${{ secrets.CALENDAR_TOKENS_DIR_PATH }}
-      - run: flyctl secrets set CALENDAR_CREDENTIALS_FILE_PATH=${{ secrets.CALENDAR_CREDENTIALS_FILE_PATH }}
-      - run: flyctl deploy --remote-only
+      - run: flyctl deploy --remote-only \
+                          --build-secret="TWILIO_NUMBER=${{ secrets.TWILIO_NUMBER }}" \
+                          --build-secret="TWILIO_AUTH_TOKEN=${{ secrets.TWILIO_AUTH_TOKEN }}" \
+                          --build-secret="TWILIO_ACCOUNT_SID=${{ secrets.TWILIO_ACCOUNT_SID }}" \
+                          --build-secret="CALENDAR_APP_NAME=${{ secrets.CALENDAR_APP_NAME }}" \
+                          --build-secret="CALENDAR_TOKENS_DIR_PATH=${{ secrets.CALENDAR_TOKENS_DIR_PATH }}" \
+                          --build-secret="CALENDAR_CREDENTIALS_FILE_PATH=${{ secrets.CALENDAR_CREDENTIALS_FILE_PATH }}"
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
           
