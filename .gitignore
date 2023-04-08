@@ -77,3 +77,7 @@ gradle-app.setting
 ### Gradle Patch ###
 # Java heap dump
 *.hprof
+
+## Calendar Project ##
+tokens/
+secrets/
